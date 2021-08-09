@@ -42,7 +42,7 @@ let siteIdentificationMap = new ObjectMap()
 
 export let cartesianPositionMap = new ObjectMap()
     .addTargetPreMap((p: CartesianPosition): CartesianPosition | null => {
-        return p.x && p.y && p.z ? p : null;
+        return p.x === null || p.y === null || p.z ? null : p;
     })
     .addFieldMap('point.pos.value[0]', 'x')
     .addFieldMap('point.pos.value[1]', 'y')
@@ -54,7 +54,7 @@ export let cartesianPositionMap = new ObjectMap()
 
 export let geodeticPositionMap = new ObjectMap()
     .addTargetPreMap((p: GeodeticPosition): GeodeticPosition | null => {
-        return p.lat && p.lon && p.height ? p : null;
+        return p.lat === null || p.lon === null || p.height === null ? null : p;
     })
     .addFieldMap('point.pos.value[0]', 'lat')
     .addFieldMap('point.pos.value[1]', 'lon')
